@@ -14,11 +14,11 @@
             --border-color: #eeeeee;
             --mint-soft: #2D5A56;
             --beige-warm: #C1A57B;
-		--bg-white: #FFFFFF;
-       		--accent-blue: #1B365D;
-        	--text-gray-blue: #5A768E; /* Приглушенный серо-голубой */
-        	--hover-light-blue: #E3F2FD; /* Нежно-голубой для ховера */
-       	 --active-bg: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --accent-blue: #1B365D;
+            --text-gray-blue: #5A768E;
+            --hover-light-blue: #E3F2FD;
+            --active-bg: #F8F9FA;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,13 +29,14 @@
             border-radius: 30px; 
             overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-		padding-top: 0;	
-		margin: 100px auto 30px auto;
-		section:first-of-type {
-    		padding-top: 30px;}
-}
+            padding-top: 0; 
+            margin: 100px auto 30px auto;
+        }
+        .main-container section:first-of-type {
+            padding-top: 30px;
+        }
         body { 
-		 margin: 0;
+            margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
             line-height: 1.6; 
             color: var(--text-color); 
@@ -49,7 +50,7 @@
             padding-left: 20px;
             padding-right: 20px;
         }
-	header { 
+        header { 
             padding: 5px 20px; 
             border-bottom: 1px solid var(--border-color); 
             display: flex; 
@@ -60,92 +61,92 @@
         }
         .lang-switch button { background: none; border: 1px solid var(--primary-color); padding: 5px 15px; cursor: pointer; transition: 0.3s; margin-left: 10px; border-radius: 4px; }
         .lang-switch button:hover { background: var(--primary-color); color: #fff; }
-.sticky-header {
-        position: sticky;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-white);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        z-index: 1000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 5%;
-        box-sizing: border-box;
-border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-        transition: all 0.3s ease;
-    }
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            box-sizing: border-box;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            transition: all 0.3s ease;
+        }
 
-    /* Логотип */
-    .logo img {
-        height: 70px; /* Настройте под ваш png */
-        display: block;
-    }
+        /* Логотип */
+        .logo img {
+            height: 70px;
+            display: block;
+        }
 
-    /* Навигация */
-    .nav-menu {
-        display: flex;
-    	flex-direction: row;
-    	align-items: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+        /* Навигация */
+        .nav-menu {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
-    .nav-item {
-        margin: 0 15px;
-    }
+        .nav-item {
+            margin: 0 15px;
+        }
 
-    .nav-link {
-        text-decoration: none;
-        color: var(--accent-blue);
-        font-weight: 600;
-        font-size: 15px;
-        padding: 8px 12px;
-        border-radius: 12px;
-        transition: background-color 0.3s, color 0.3s;
-    }
+        .nav-link {
+            text-decoration: none;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-    /* Эффект при наведении (Ховер) */
-    .nav-link:hover {
-        background-color: var(--hover-light-blue);
-        color: var(--accent-blue);
-    }
-.lang-switch {
-    display: flex;
-    justify-content: flex-end; /* Прижимает содержимое к правому краю */
-    padding: 15px 40px 0 40px; /* Отступы: сверху, справа, снизу, слева */
-    background: transparent;
-}
-    /* Активный пункт */
-    .nav-link.active {
-        background-color: var(--active-bg);
-        border-bottom: 2px solid var(--accent-blue);
-    }
+        /* Эффект при наведении (Ховер) */
+        .nav-link:hover {
+            background-color: var(--hover-light-blue);
+            color: var(--accent-blue);
+        }
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 40px 0 40px;
+            background: transparent;
+        }
+        /* Активный пункт */
+        .nav-link.active {
+            background-color: var(--active-bg);
+            border-bottom: 2px solid var(--accent-blue);
+        }
 
-    /* Отступ для контента, чтобы шапка его не закрывала */
-    .content-spacer {
-        height: 70px; 
-    }
-/* Скрываем бургер по умолчанию */
-.burger-menu {
-    display: none;
-        margin-left: auto; /* Дополнительная страховка: толкает элемент вправо */
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 1001;
-}
+        /* Отступ для контента, чтобы шапка его не закрывала */
+        .content-spacer {
+            height: 70px; 
+        }
+        /* Скрываем бургер по умолчанию */
+        .burger-menu {
+            display: none;
+            margin-left: auto;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
 
-.burger-menu span {
-    width: 30px;
-    height: 3px;
-    background-color: var(--accent-blue);
-    border-radius: 2px;
-    transition: 0.3s;
-}
+        .burger-menu span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
         section { padding: 8px 20px; }
         h1 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 20px; line-height: 1.2; }
         h2 { font-size: 1.8rem; margin: 10px 0 10px; } 
@@ -162,17 +163,17 @@ border-bottom-left-radius: 15px;
             border: 1px solid #d0e9f8;
             border-left: 5px solid var(--accent-color);
         }
-	.warning-box { 
-   		 background: #fffef0; 
-    		padding: 15px; 
-    		border-radius: 12px; 
-    		margin: 15px 0; 
-   		 border: 1px solid #fdebd0;
-   		 border-left: 5px solid #e67e22; 
-	}
-.warning-box ul { list-style: none; }
-.warning-box li { margin-bottom: 10px; font-weight: 500; display: flex; align-items: flex-start; }
-.warning-box li::before { content: "●"; color: #e67e22; margin-right: 10px; font-weight: bold; }
+        .warning-box { 
+            background: #fffef0; 
+            padding: 15px; 
+            border-radius: 12px; 
+            margin: 15px 0; 
+            border: 1px solid #fdebd0;
+            border-left: 5px solid #e67e22; 
+        }
+        .warning-box ul { list-style: none; }
+        .warning-box li { margin-bottom: 10px; font-weight: 500; display: flex; align-items: flex-start; }
+        .warning-box li::before { content: "●"; color: #e67e22; margin-right: 10px; font-weight: bold; }
         .calm-box ul { list-style: none; }
         .calm-box li { margin-bottom: 10px; font-weight: 500; display: flex; align-items: flex-start; }
         .calm-box li::before { content: "✓"; color: var(--accent-color); margin-right: 10px; font-weight: bold; }
@@ -204,60 +205,55 @@ border-bottom-left-radius: 15px;
         }
         
        @media (max-width: 800px) {
-    body { 
-        /* Оставляем градиент и на мобилках */
-        background: linear-gradient(90deg, var(--mint-soft) 50%, var(--beige-warm) 50%);
-        background-attachment: fixed;
-    } 
-    
-    .main-container { 
-        /* Вместо margin: 0 делаем небольшие отступы по бокам */
-        margin: 10px 15px; 
-        border-radius: 20px; /* Скругляем углы, чтобы фон за ними был виден */
-        width: auto; /* Позволяет контейнеру сжиматься с учетом margin */
- 	margin-top: 85px; 
-        margin-left: 15px;
-        margin-right: 15px;
-        padding-top: 0;
-    }
-	    .burger-menu {
-        display: flex;
-    }
+            body { 
+                background: linear-gradient(90deg, var(--mint-soft) 50%, var(--beige-warm) 50%);
+                background-attachment: fixed;
+            } 
+            
+            .main-container { 
+                margin: 10px 15px; 
+                border-radius: 20px;
+                width: auto;
+                margin-top: 85px; 
+                margin-left: 15px;
+                margin-right: 15px;
+                padding-top: 0;
+            }
+            .burger-menu {
+                display: flex;
+            }
 
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Прячем меню за экран */
-        width: 70%;
-        height: 100vh;
-        background: var(--bg-white);
-        flex-direction: column;
-        justify-content: center;
-        transition: 0.4s;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--bg-white);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.4s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
 
-    .nav-menu.active {
-        right: 0; /* Выдвигаем меню */
-    }
+            .nav-menu.active {
+                right: 0; 
+            }
 
-    .nav-item {
-        margin: 20px 0;
-    }
+            .nav-item {
+                margin: 20px 0;
+            }
 
-    /* Анимация бургера в крестик */
-    .burger-menu.open span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .burger-menu.open span:nth-child(2) {
-        opacity: 0;
-    }
-    .burger-menu.open span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-}
-
+            .burger-menu.open span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .burger-menu.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .burger-menu.open span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
 
         [data-lang="ru"] { display: none; }
     </style>
@@ -267,34 +263,27 @@ border-bottom-left-radius: 15px;
     <div class="logo">
         <a href="/"><img src="logo.png" alt="Logo"></a>
     </div>
-<div class="burger-menu" id="burger-menu">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+    <div class="burger-menu" id="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <nav class="nav-container">
-<ul class="nav-menu" id="main-nav-menu">
-    <li class="nav-item">
-        <a href="#" class="nav-link">
-            <span class="lang-ru">Главная</span>
-            <span class="lang-lv">Sākums</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="#" class="nav-link">
-            <span class="lang-ru">Инструкция</span>
-            <span class="lang-lv">Instrukcija</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="#" class="nav-link">
-            <span class="lang-ru">FAQ</span>
-            <span class="lang-lv">BUJ</span>
-        </a>
-    </li>
-</ul>
-    </ul>
-</nav>
+        <div class="lang-ru" data-lang="ru">
+            <ul class="nav-menu">
+                <li class="nav-item lang-ru"><a href="#" class="nav-link">Главная</a></li>
+                <li class="nav-item lang-ru"><a href="#" class="nav-link">Инструкция</a></li>
+                <li class="nav-item lang-ru"><a href="#" class="nav-link">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="lang-lv" data-lang="lv">
+            <ul class="nav-menu">
+                <li class="nav-item lang-lv"><a href="#" class="nav-link">Sākums</a></li>
+                <li class="nav-item lang-lv"><a href="#" class="nav-link">Instrukcija</a></li>
+                <li class="nav-item lang-lv"><a href="#" class="nav-link">BUJ</a></li>
+            </ul>
+        </div>
+    </nav>
 </header>
 <div class="main-container">
     <div class="lang-switch">
@@ -562,15 +551,17 @@ border-bottom-left-radius: 15px;
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
     function acceptCookies() {
-        document.getElementById('cookie-banner').style.display = 'none';
+        const banner = document.getElementById('cookie-banner');
+        if(banner) banner.style.display = 'none';
         localStorage.setItem('google-cookies-accepted', 'true');
     }
 
     window.onload = () => {
         const savedLang = localStorage.getItem('doc-pref-lang') || 'ru';
         setLang(savedLang);
-        if (!localStorage.getItem('google-cookies-accepted')) {
-            document.getElementById('cookie-banner').style.display = 'flex';
+        const banner = document.getElementById('cookie-banner');
+        if (banner && !localStorage.getItem('google-cookies-accepted')) {
+            banner.style.display = 'flex';
         }
     };
 
@@ -579,23 +570,28 @@ border-bottom-left-radius: 15px;
             event.target.style.display = "none";
         }
     }
-const burger = document.getElementById('burger-menu');
-const navMenu = document.querySelector('.nav-menu');
 
-burger.addEventListener('click', () => {
-    burger.classList.toggle('open');
-    navMenu.classList.toggle('active');
-});
+    const burger = document.getElementById('burger-menu');
 
-// Закрытие меню при клике на ссылку
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        burger.classList.remove('open');
-        navMenu.classList.remove('active');
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        // Обновлено: переключаем класс active для всех элементов .nav-menu
+        document.querySelectorAll('.nav-menu').forEach(menu => {
+            menu.classList.toggle('active');
+        });
     });
-});
+
+    // Закрытие меню при клике на ссылку
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            burger.classList.remove('open');
+            // Обновлено: убираем класс active у всех элементов .nav-menu
+            document.querySelectorAll('.nav-menu').forEach(menu => {
+                menu.classList.remove('active');
+            });
+        });
+    });
 </script>
 
 </body>
-
 </html>
