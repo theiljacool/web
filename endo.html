@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ieteikumi pēc zoba izraušanas</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --light-gray: #f9f9f9;
+            --border-color: #eeeeee;
+            --mint-soft: #2D5A56;
+            --beige-warm: #C1A57B;
+            --bg-white: #FFFFFF;
+            --accent-blue: #1B365D;
+            --text-gray-blue: #5A768E;
+            --hover-light-blue: #E3F2FD;
+            --active-bg: #F8F9FA;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .main-container {
+            background: #fff;
+            max-width: 800px;
+            margin: 20px auto; 
+            border-radius: 30px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            padding-top: 0; 
+            margin: 100px auto 30px auto;
+        }
+        .main-container section:first-of-type {
+            padding-top: 30px;
+        }
+        body { 
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-color); 
+            background: linear-gradient(90deg, var(--mint-soft) 50%, var(--beige-warm) 50%);
+            background-attachment: fixed;
+        }
+        header, section, footer {
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        header { 
+            padding: 5px 20px; 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            justify-content: flex-end; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+        .lang-switch button { background: none; border: 1px solid var(--primary-color); padding: 5px 15px; cursor: pointer; transition: 0.3s; margin-left: 10px; border-radius: 4px; }
+        .lang-switch button:hover { background: var(--primary-color); color: #fff; }
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            box-sizing: border-box;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        /* Логотип */
+        .logo img {
+            height: 70px;
+            display: block;
+        }
+
+        /* Навигация */
+        .nav-menu {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Эффект при наведении (Ховер) */
+        .nav-link:hover {
+            background-color: var(--hover-light-blue);
+            color: var(--accent-blue);
+        }
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 40px 0 40px;
+            background: transparent;
+        }
+        /* Активный пункт */
+        .nav-link.active {
+            background-color: var(--active-bg);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        /* Отступ для контента, чтобы шапка его не закрывала */
+        .content-spacer {
+            height: 70px; 
+        }
+        /* Скрываем бургер по умолчанию */
+        .burger-menu {
+            display: none;
+            margin-left: auto;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        section { padding: 8px 20px; }
+        h1 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 20px; line-height: 1.2; }
+        h2 { font-size: 1.8rem; margin: 10px 0 10px; } 
+        h3 { margin-bottom: 5px; }
+        p { margin-bottom: 5px; }
+
+        .subtitle { font-size: 1.2rem; color: #666; margin-bottom: 30px; font-weight: 500; }
+        
+        .calm-box { 
+            background: #eef7fd; 
+            padding: 15px; 
+            border-radius: 12px; 
+            margin: 15px 0; 
+            border: 1px solid #d0e9f8;
+            border-left: 5px solid var(--accent-color);
+        }
+        .warning-box { 
+            background: #fffef0; 
+            padding: 15px; 
+            border-radius: 12px; 
+            margin: 15px 0; 
+            border: 1px solid #fdebd0;
+            border-left: 5px solid #e67e22; 
+        }
+        .warning-box ul { list-style: none; }
+        .warning-box li { margin-bottom: 10px; font-weight: 500; display: flex; align-items: flex-start; }
+        .warning-box li::before { content: "●"; color: #e67e22; margin-right: 10px; font-weight: bold; }
+        .calm-box ul { list-style: none; }
+        .calm-box li { margin-bottom: 10px; font-weight: 500; display: flex; align-items: flex-start; }
+        .calm-box li::before { content: "✓"; color: var(--accent-color); margin-right: 10px; font-weight: bold; }
+
+        .recommendations ul, .warning-list ul { padding-left: 20px; margin-bottom: 20px; }
+        .recommendations li, .warning-list li { margin-bottom: 12px; }
+
+        .healing-stage { display: flex; align-items: flex-start; margin-bottom: 40px; gap: 20px; }
+        .healing-img { flex-shrink: 0; width: 100px; height: 100px; background: #eee; border-radius: 50%; overflow: hidden; }
+        .healing-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .faq-item { border-bottom: 1px solid var(--border-color); padding: 10px 0; cursor: pointer; }
+        .faq-question { font-weight: 600; display: flex; justify-content: space-between; }
+        .faq-answer { display: none; padding-top: 10px; color: #555; }
+        .faq-item.active .faq-answer { display: block; }
+
+        .contact-section { text-align: center; background: var(--light-gray); border-radius: 12px; padding: 20px; }
+        .cta-buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        .btn { display: flex; align-items: center; justify-content: center; padding: 8px 13px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-tg { background: #0088cc; color: #fff; }
+        .btn-wa { background: #25d366; color: #fff; }
+        .btn svg { margin-right: 10px; width: 24px; height: 24px; fill: currentColor; }
+        .phone-note { margin-top: 20px; font-size: 0.9rem; color: #777; }
+
+        footer { text-align: center; padding: 20px 10px; font-size: 0.8rem; color: #999; border-top: 1px solid var(--border-color); }
+        
+        @media (min-width: 600px) {
+            .cta-buttons { flex-direction: row; justify-content: center; }
+        }
+        
+       @media (max-width: 800px) {
+            body { 
+                background: linear-gradient(90deg, var(--mint-soft) 50%, var(--beige-warm) 50%);
+                background-attachment: fixed;
+            } 
+            
+            .main-container { 
+                margin: 10px 15px; 
+                border-radius: 20px;
+                width: auto;
+                margin-top: 85px; 
+                margin-left: 15px;
+                margin-right: 15px;
+                padding-top: 0;
+            }
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--bg-white);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.4s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                right: 0; 
+            }
+
+            .nav-item {
+                margin: 20px 0;
+            }
+
+            .burger-menu.open span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .burger-menu.open span:nth-child(2) {
+                opacity: 0;
+            }
+            .burger-menu.open span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
+        /* НОВЫЕ ПРАВИЛА ДЛЯ КОРРЕКТНОГО ПЕРЕКЛЮЧЕНИЯ ЯЗЫКОВ */
+        body[data-current-lang="ru"] .lang-lv { display: none !important; }
+        body[data-current-lang="lv"] .lang-ru { display: none !important; }
+
+    </style>
+</head>
+<body data-current-lang="ru"> <header class="sticky-header">
+    <div class="logo">
+        <a href="/"><img src="logo.png" alt="Logo"></a>
+    </div>
+    <div class="burger-menu" id="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav class="nav-container">
+        <div class="lang-ru" data-lang="ru">
+            <ul class="nav-menu">
+                <li class="nav-item lang-ru"><a href="#" class="nav-link">Главная</a></li>
+                <li class="nav-item lang-ru"><a href="#" class="nav-link">Инструкция</a></li>
+                <li class="nav-item lang-ru"><a href="#" class="nav-link">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="lang-lv" data-lang="lv">
+            <ul class="nav-menu">
+                <li class="nav-item lang-lv"><a href="#" class="nav-link">Sākums</a></li>
+                <li class="nav-item lang-lv"><a href="#" class="nav-link">Instrukcija</a></li>
+                <li class="nav-item lang-lv"><a href="#" class="nav-link">BUJ</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="main-container">
+    <div class="lang-switch">
+        <button onclick="setLang('ru')">RU</button>
+        <button onclick="setLang('lv')">LV</button>
+    </div>
+<section id="screen1">
+    <div class="container">
+        <div class="lang-ru">
+            <h1>Рекомендации после чистки каналов</h1>
+            <p class="subtitle">Для пациентов, прошедших эндодонтическое лечение</p>
+            <div class="recommendations">
+                <p>Согласно клиническим стандартам, после очистки каналов зуб может оставаться чувствительным в течение нескольких дней. Это нормальная реакция организма на вмешательство.</p>
+                <div class="card">
+                    <ul>
+                        <li>Не принимайте пищу 2 часа после окончания лечения.</li>
+            <li>Не пейте после окончания лечения.</li>
+                        <li>Старайтесь не жевать на пролеченной стороне до установки постоянной пломбы или коронки.</li>
+                        <li>Соблюдайте гигиену: аккуратно чистите зубы щеткой и нитью, избегая резких движений в области временной пломбы. Будьте аккуратны в области временной пломбы, чтобы случайно не извлечь её</li>
+            <li>Для борьбы с постоперационной чувствительностью и болью рекомендуют комбинацию безрецептурных обезболивающих - ибупрофен и парацетамол. Иногда препараты <strong>не убирают полностью </strong>дискомфорт, а только его уменьшают </li>
+                        <li>Пик постоперационной чувствительности обычно приходится на первые 24–48 часов и сохранятся до 5 дней. С каждым последующим утром вы будете замечать, что дискомфорт затихает, пока не исчезнет совсем.</li>
+            </ul>
+                </div>
+                <div class="calm-box">
+                    <p>✓ Дискомфорт — это признак начала процесса заживления.</p>
+                    <p>✓ Современная анестезия минимизирует неприятные ощущения во время процедуры.</p>
+                    <p>✓ Ваша временная пломба надежно защищает канал от инфекций.</p>
+            <p>✓ Зуб спасен: Эндодонтическое лечение — это способ сохранить ваш естественный зуб, что намного комфортнее любого импланта.</p>
+            <p>✓ Улучшение самочувствия: после удаления очага инфекции нагрузка на вашу иммунную систему снижается. Многие пациенты отмечают, что после полного заживления они чувствуют себя бодрее, так как организму больше не нужно тратить ресурсы на борьбу с хроническим воспалением.</p>
+                </div>
+            </div>
+        </div>
+        <div class="lang-lv" lang="lv">
+            <h1>Rekomendācijas pēc kanālu tīrīšanas</h1>
+            <p class="subtitle">Pacientiem, kuriem veikta endodontiskā ārstēšana</p>
+            <div class="content">
+                <p>Saskaņā ar klīniskiem standartiem, pēc kanālu tīrīšanas zobs var būt jutīgs vairākas dienas. Tā ir normāla organisma reakcija uz iejaukšanos.</p>
+                <div class="recommendations">
+                    <ul>
+                        <li>Neēdiet 2 stundas pēc procedūras.</li>
+            <li>Nedzeriet 2 stundas pēc procedūras.</li>
+                        <li>Centieties nekošļāt ar ārstēto pusi, līdz tiek uzstādīta pastāvīgā plombe vai kronis.</li>
+                        <li>Ievērojiet higiēnu: uzmanīgi tīriet zobus, izvairoties no straujām kustībām pagaidu plombes zonā. Esiet uzmanīgi pagaidu plombas zonā, lai nejauši to neizvilktu.</li>
+            <li>Pēcoperācijas jutīguma un sāpju mazināšanai iesaka lietot bezrecepšu pretsāpju līdzekļu kombināciju — ibuprofēnu un paracetamolu. Dažreiz medikamenti <strong>pilnībā nenovērš</strong> diskomfortu, bet tikai to mazina.</li>
+                    <li>Pirmajās 24-48 pēcoperacijas stundās, parasti ir jutīguma pīķis, kas var saglabāties līdz 5 dienām. Ar katru nākamo dienu, diskomforts mazināsies, līdz pilnīgi izzudīs.</li> 
+           </ul>
+                </div>
+                <div class="calm-box">
+                    <p>✓ Diskomforts ir dzīšanas procesa sākuma pazīme.</p>
+                    <p>✓ Mūsdienīga anestēzija samazina nepatīkamas sajūtas procedūras laikā.</p>
+                    <p>✓ Jūsu pagaidu plombe droši pasargā kanālu no infekcijām.</p>
+            <p>✓ Pašsajūtas uzlabojums: Pēc atbrīvošanās no infekcijas avota no zoba kanāla, noslodze uz Jūsu immuno sistēmu samazinās.Daudzi pacienti atzīmē, ka pēc pilnīgas sadzīšanas, jūtas daudz labāk, jo organismam vairāk nav jātērē resursi cīņai pret hronisku iekaisumu.</p>
+            <p>✓ Endodontiskā ārstēšana ir veids, kā saglabāt jūsu dabisko zobu, kas  ir daudz ērtāk par jebkuru implantu. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="screen2">
+    <div class="container">
+        <div class="lang-ru">
+            <h2>Что такое чистка каналов</h2>
+            <div class="recommendations">
+                <p>Чистка каналов (в стоматологии это называется эндодонтическим лечением) — это процедура по спасению зуба, когда инфекция добралась до его «сердца» — пульпы (мягких тканей, где находятся нервы и сосуды).</p>
+                <div class="card">
+                    <ul>
+                        <li><strong>Доступ:</strong> Стоматолог делает отверстие в зубе, чтобы добраться до воспаленного нерва.</li>
+                        <li><strong>Удаление:</strong> Из каналов извлекают поврежденный нерв и продукты распада тканей.</li>
+                        <li><strong>Расширение:</strong> С помощью тонких инструментов (файлов) стенки каналов выравнивают, придавая им нужную форму.</li>
+                        <li><strong>Дезинфекция:</strong> Каналы тщательно промывают антисептиками, чтобы убить все бактерии.</li>
+                        <li><strong>Пломбирование:</strong> Пустое пространство герметично заполняют специальным материалом (обычно гуттаперчей), чтобы инфекция не вернулась.</li>
+                    </ul>
+                </div>
+<div class="product-image-container">
+                <center><img src="endo.png"></center>
+ </div>
+            </div>
+        </div>
+
+        <hr> <div class="lang-lv" lang="lv">
+            <h2>Kas ir kanālu tīrīšana</h2>
+            <div class="recommendations">
+                <p>Kanālu tīrīšana (stomatoloģijā to sauc par endodontisko ārstēšanu) ir zoba glābšanas procedūra gadījumos, kad infekcija ir sasniegusi tā «sirdi» — pulpu (mīkstos audus, kuros atrodas nervi un asinsvadi).</p>
+                <div class="card">
+                    <ul>
+                        <li><strong>Piekļuve:</strong> Zobārsts izveido atveri zobā, lai piekļūtu iekaisušajam nervam.</li>
+                        <li><strong>Izņemšana:</strong> No kanāliem tiek izņemts bojātais nervs un audu sabrukšanas produkti.</li>
+                        <li><strong>Paplašināšana:</strong> Izmantojot smalkus instrumentus (failus), kanālu sieniņas tiek izlīdzinātas, piešķirot tām vajadzīgo formu.</li>
+                        <li><strong>Dezinfekcija:</strong> Kanālus rūpīgi izskalo ar antiseptiķiem, lai iznīcinātu visas baktērijas.</li>
+                        <li><strong>Plombēšana:</strong> Tukšo telpu hermētiski aizpilda ar speciālu materiālu (parasti gutaperču), lai infekcija neatgrieztos.</li>
+                    </ul>
+                </div>
+              <div class="product-image-container">
+                <center><img src="endo.png"></center>
+ </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="screen3">
+    <div class="container">
+        <h2 class="lang-ru">Частозадаваемые вопросы</h2>
+        <h2 class="lang-lv" lang="lv">Biežāk uzdotie jautājumi</h2>
+        
+        <div id="faq-container">
+            </div>
+    </div>
+</section>
+<section id="screen3">
+
+          
+            <div class="warning-box">   <div class="lang-ru">
+                <strong>Свяжитесь с врачом, если:</strong>
+                <ul>
+                    <li>Сильный отек десны или щеки, который увеличивается.</li>
+                    <li>Острая боль, не снимаемая обезболивающими.</li>
+                    <li>Временная пломба выпала полностью.</li>
+                    <li>Аллергическая реакция на назначенные препараты.</li>
+                </ul>
+            </div> <div class="lang-lv" lang="lv">
+                <strong>Sazinieties ar ārstu, ja:</strong>
+                <ul>
+                    <li>Spēcīgs smaganu vai vaigu pietūkums, kas palielinās.</li>
+                    <li>Asas sāpes, kuras nenoņem pretsāpju līdzekļi.</li>
+                    <li>Pagaidu plombe ir pilnībā izkritusi.</li>
+                    <li>Alerģiska reakcija uz nozīmētajiem medikamentiem.</li>
+                </ul>
+            </div></div>
+</section>
+<section id="screen4">
+    <div class="contact-section">
+        <div class="lang-ru" data-lang="ru">
+            <h2>Связь с доктором</h2>
+            <p>В случае возникновения вопросов, пожалуйста, <strong>напишите сообщение</strong> с описанием вашей ситуации. Доктор изучит информацию и свяжется с вами. Просим <strong>не звонить</strong> напрямую, чтобы не прерывать текущий прием пациентов.</p>
+        </div>
+        <div class="lang-lv" data-lang="lv">
+            <h2>Saziņa ar ārstu</h2>
+            <p>Jautājumu gadījumā, lūdzu, <strong>uzrakstiet ziņu</strong> ar savas situācijas aprakstu. Ārsts izskatīs informāciju un sazināsies ar jums. Lūdzam <strong>nezvanīt</strong> tieši, lai nepārtrauktu tekošo pacientu pieņemšanu.</p>
+        </div>
+        <div class="cta-buttons">
+            <a href="https://t.me/DrPozolotin" class="btn btn-tg">Telegram</a>
+            <a href="https://wa.me/37120000076" class="btn btn-wa">WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+</section>
+
+<section id="screen3">
+    <div class="lang-ru" data-lang="ru">
+        <h2>Частозадаваемые вопросы</h2>
+        <div class="faq">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Можно ли есть сразу? <span>+</span></div>
+                <div class="faq-answer">Только после окончания действия анестезии, чтобы не прикусить щеку.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Будет ли болеть зуб? <span>+</span></div>
+                <div class="faq-answer">Небольшой дискомфорт при нажатии — норма до 3-5 дней.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Зачем нужна временная пломба? <span>+</span></div>
+                <div class="faq-answer">Она герметизирует каналы между этапами лечения.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Что делать, если пломба крошится? <span>+</span></div>
+                <div class="faq-answer">Если выпала часть, это не страшно. Если вся — напишите.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Можно ли заниматься спортом? <span>+</span></div>
+                <div class="faq-answer">В первый день лучше избежать тяжелых физических нагрузок.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Нужно ли пить антибиотики? <span>+</span></div>
+                <div class="faq-answer">Только если их назначил врач лично вам.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Можно ли курить? <span>+</span></div>
+                <div class="faq-answer">Желательно воздержаться минимум 2-3 часа после процедуры.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Как чистить этот зуб? <span>+</span></div>
+                <div class="faq-answer">Обычной щеткой, но без сильного давления.</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="lang-lv" data-lang="lv">
+        <h2>Biežāk uzdotie jautājumi</h2>
+        <div class="faq">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Vai drīkst ēst uzreiz? <span>+</span></div>
+                <div class="faq-answer">Tikai pēc anestēzijas beigām, lai nesakostu vaigu.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Vai zobs sāpēs? <span>+</span></div>
+                <div class="faq-answer">Neliels diskomforts uzspiežot ir norma līdz 3-5 dienām.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Kāpēc vajadzīga pagaidu plombe?<span>+</span></div>
+                <div class="faq-answer">Tā noslēdz kanālus starp ārstēšanas posmiem.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Ko darīt, ja plombe drūp? <span>+</span></div>
+                <div class="faq-answer">Ja izkritusi daļa, tas nav bīstami. Ja visa – rakstiet.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Vai drīkst sportot? <span>+</span></div>
+                <div class="faq-answer">Pirmajā dienā labāk izvairīties no lielas fiziskas slodzes.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Vai jādzer antibiotikas?<span>+</span></div>
+                <div class="faq-answer">Tikai tad, ja ārsts tās nozīmējis personīgi jums.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Vai drīkst smēķēt? <span>+</span></div>
+                <div class="faq-answer">Vēlams atturēties vismaz 2-3 stundas pēc procedūras.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">Kā tīrīt šo zobu? <span>+</span></div>
+                <div class="faq-answer">Ar parasto birsti, bet bez liela spiediena.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="screen4">
+    <div class="contact-section">
+        <div class="lang-ru" data-lang="ru">
+            <h2>Связь с доктором</h2>
+            <p>В случае возникновения вопросов, пожалуйста, <strong>напишите сообщение</strong> с описанием вашей ситуации. Доктор изучит информацию и свяжется с вами. Просим <strong>не звонить</strong> напрямую, чтобы не прерывать текущий прием пациентов.</p>
+        </div>
+        <div class="lang-lv" data-lang="lv">
+            <h2>Saziņa ar ārstu</h2>
+            <p>Jautājumu gadījumā, lūdzu, <strong>uzrakstiet ziņu</strong> ar savas situācijas aprakstu. Ārsts izskatīs informāciju un sazināsies ar jums. Lūdzam <strong>nezvanīt</strong> tieši, lai nepārtrauktu tekošo pacientu pieņemšanu.</p>
+        </div>
+        <div class="cta-buttons">
+            <a href="https://t.me/DrPozolotin" class="btn btn-tg">Telegram</a>
+            <a href="https://wa.me/37120000076" class="btn btn-wa">WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <span onclick="openModal('modal-policy')">Lietošanas noteikumi</span>
+        <span onclick="openModal('modal-data')">Datu apstrāde</span>
+    </div>
+<p>© 2026 Dr. Pozolotin. Visas tiesības aizsargātas.</p>
+</footer>
+</div>
+<script>
+    function setLang(lang) {
+        // Устанавливаем текущий язык в глобальный атрибут body
+        document.body.setAttribute('data-current-lang', lang);
+        localStorage.setItem('doc-pref-lang', lang);
+    }
+
+    function toggleFaq(el) {
+        el.classList.toggle('active');
+        const span = el.querySelector('.faq-question span');
+        if(span) span.textContent = el.classList.contains('active') ? '−' : '+';
+    }
+
+    function openModal(id) { document.getElementById(id).style.display = 'block'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    function acceptCookies() {
+        const banner = document.getElementById('cookie-banner');
+        if(banner) banner.style.display = 'none';
+        localStorage.setItem('google-cookies-accepted', 'true');
+    }
+
+    window.onload = () => {
+        const savedLang = localStorage.getItem('doc-pref-lang') || 'ru';
+        setLang(savedLang);
+        const banner = document.getElementById('cookie-banner');
+        if (banner && !localStorage.getItem('google-cookies-accepted')) {
+            banner.style.display = 'flex';
+        }
+    };
+
+    window.onclick = function(event) {
+        if (event.target.className === 'modal') {
+            event.target.style.display = "none";
+        }
+    }
+
+    const burger = document.getElementById('burger-menu');
+
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        // Обновлено: переключаем класс active для всех элементов .nav-menu
+        document.querySelectorAll('.nav-menu').forEach(menu => {
+            menu.classList.toggle('active');
+        });
+    });
+
+    // Закрытие меню при клике на ссылку
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            burger.classList.remove('open');
+            // Обновлено: убираем класс active у всех элементов .nav-menu
+            document.querySelectorAll('.nav-menu').forEach(menu => {
+                menu.classList.remove('active');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
